@@ -67,7 +67,7 @@ class Servicos(models.Model):
         return self.servicos
     
 class Cliente(models.Model):
-    nome = models.CharField(max_length=200, default="João Pereira")
+    nome = models.CharField(max_length=200, null=True)
     telefone = models.CharField(max_length=13, default="00 00000-0000")
     cep = models.CharField(max_length=8, default="00000-000")
     logradouro = models.CharField(max_length=200, default="Rua 10")
@@ -125,3 +125,13 @@ class Animais(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class Agendamento(models.Model):
+    animal = models.ForeignKey('Animais', on_delete=models.CASCADE)
+    procedimento = models.ForeignKey('Servicos', on_delete=models.CASCADE)
+    data = models.DateField()
+    horario = models.TimeField()
+
+    def __str__(self):
+        return f"Agendamento para {self.animal} - {self.procedimento} em {self.data} às {self.horario}"
