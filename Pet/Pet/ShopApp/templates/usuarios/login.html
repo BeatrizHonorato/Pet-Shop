@@ -1,0 +1,15 @@
+{% extends 'usuarios/base_login.html' %}
+{% block login %}
+
+<form action="{% url 'login' %}" method="POST">{% csrf_token %}
+    <br>
+    <br>
+    <input type="text" placeholder="Username" name="username">
+    <br>
+    <br>
+    <input type="password" placeholder="Senha" name="senha">
+    <br>
+    <br>
+    <input type="submit" value="logar">
+</form>
+{% endblock %}
